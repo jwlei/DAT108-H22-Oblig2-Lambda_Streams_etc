@@ -15,15 +15,6 @@ public class Main {
         // part iii
         int distanceX = 54, distanceY = 45;
 
-//        calculate(x, y, bf);
-//        calculate(x, y, bf);
-//        calculate(x, y, bf);
-
-        public static int calculate (int x, int y, BiFunction<Integer, Integer, Integer> bf) {
-            return bf.apply(x, y);
-        }
-
-
 
         /**
          * We create a BiFunction which
@@ -34,7 +25,7 @@ public class Main {
          */
 
         // part i
-        BiFunction<Integer, Integer, Integer> add = (x, y) -> {
+        BiFunction<Integer, Integer, Integer> getSum = (x, y) -> {
             /**
              * We use the BiFunction to return the result of summing
              * integers X and Y.
@@ -61,6 +52,22 @@ public class Main {
             return Math.abs(x - y);
         };
 
+        /*
+         * Use each BiFunction to calculate the result using their respective
+         * integer values (i, ii, iii).
+         */
 
+        int ansI = calculate(sumX, sumY, getSum);
+        int ansII = calculate(largestX, largestY, getLargest);
+        int ansIII = calculate(distanceX, distanceY, getDistance);
+
+        System.out.format("The sum of %d and %d is [%d]. \n", sumX, sumY, ansI);
+        System.out.format("The largest of %d and %d is [%d]. \n", largestX, largestY, ansII);
+        System.out.format("The absolute distance between %d and %d is [%d] \n", distanceX, distanceY, ansIII);
+    }
+
+
+    public static int calculate (int x, int y, BiFunction<Integer, Integer, Integer> bf) {
+        return bf.apply(x, y);
     }
 }
