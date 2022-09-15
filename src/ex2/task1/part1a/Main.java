@@ -37,6 +37,12 @@ public class Main {
          * }
          */
 
+        // Collections.sort(intList, (x,y) -> Integer.parseInt(x) - Integer.valueOf(y));
+
+        // Collections.sort(intList, (x,y) -> {
+        //      return x.compareTo(y);
+        // });
+
         Collections.sort(intList, (x, y) -> {
             Integer x1 = Integer.parseInt(x);
             Integer y1 = Integer.parseInt(y);

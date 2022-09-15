@@ -5,17 +5,11 @@ import java.util.List;
 import java.util.function.Function;
 
 public class Main {
-    // TODO: Fast kronetillegg
     private final static int INCREASED_SALARY = 50_000;
-
-    // TODO: fast prosenttillegg
     private final static int PERCENTAGE_INCREASE = 7;
-
-    // TODO: fast kronetillegg for lav lønn
     private final static int INCREASED_LOW_SALARY = 30_000;
-
-    // TODO: fast prosentttillegg hvis du er mann
     private final static int PERCENTAGE_INCREASE_MALE = 15;
+
     public static void main(String[] args) {
 
         /*
@@ -30,6 +24,15 @@ public class Main {
                 new Employee("Lise",    "Aanstad",  Gender.FEMALE,  "FrontEnd",     600_000),
                 new Employee("Jurgen",  "Hansen",   Gender.MALE,    "FrontEnd",     500_000)
         );
+
+
+        /*
+         * A Function<T, R>
+         * T - Input
+         * R - Result
+         *
+         * R apply.(T t);
+         */
 
         // Function to increase salary by INCREASED_SALARY;
         Function<Employee, Integer> increasedSalary =
@@ -46,6 +49,8 @@ public class Main {
         // Function to increase salary by PERCENTAGE_INCREASE_MALE if the employee is MALE;
         Function<Employee, Integer> increaseForMale =
                 employee -> employee.getGender() == Gender.MALE ? (employee.getSalary() + employee.getSalary()*PERCENTAGE_INCREASE_MALE/100) : employee.getSalary();
+
+
 
         // Base list
         printAll(employeeList);
@@ -73,22 +78,7 @@ public class Main {
         salaryAdjustment(employeeList, increaseForMale);
         printAll(employeeList);
         System.out.println();
-
-
     }
-
-    // TODO: Create functions for adjustments of salary
-
-    /*
-     * A Function<T, R>
-     * T - Input
-     * R - Result
-     *
-     * R apply.(T t);
-     */
-
-
-
 
 
     private static void salaryAdjustment(List<Employee> employeeList, Function<Employee, Integer> function) {

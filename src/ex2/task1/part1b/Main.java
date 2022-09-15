@@ -62,7 +62,7 @@ public class Main {
         int ansIII = calculate(distanceX, distanceY, getDistance);
 
         System.out.format("The sum of %d and %d is [%d]. \n", sumX, sumY, ansI);
-        System.out.format("The largest of %d and %d is [%d]. \n", largestX, largestY, ansII);
+        System.out.format("The largest value of %d and %d is [%d]. \n", largestX, largestY, ansII);
         System.out.format("The absolute distance between %d and %d is [%d] \n", distanceX, distanceY, ansIII);
     }
 
