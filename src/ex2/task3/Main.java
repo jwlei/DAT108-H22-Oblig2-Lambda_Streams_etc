@@ -75,7 +75,7 @@ public class Main {
              // .map(salary -> employee.getSalary())
                 .map(Employee::getSalary)
                 .anyMatch(salary -> salary >= 800_000);
-                System.out.println("[TASK E] - The highest salary is " + greaterThanSalary + "\n\n");
+                System.out.println("[TASK E] - The highest salary is " + greaterThanSalary + "\n");
 
 
         // Task f - Print the employee list with System.out.println() without using a loop
