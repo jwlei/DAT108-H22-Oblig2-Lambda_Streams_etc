@@ -35,6 +35,9 @@ public class Main {
         // Create a placeholder list to print the answers
         List<String> ans_list;
 
+
+        System.out.println("[INITIAL LIST] - \n" + employeeList + "\n");
+
         // Task a - List of lastNames
         ans_list = employeeList.stream()
              // .map(employee -> employee.getlName())
