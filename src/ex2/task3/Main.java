@@ -1,9 +1,11 @@
 package ex2.task3;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.OptionalDouble;
 
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static ex2.task3.Gender.*;
@@ -36,46 +38,58 @@ public class Main {
         // Task a - List of lastNames
         ans_list = employeeList.stream()
              // .map(employee -> employee.getlName())
+                // TODO: Comment .map, .collect
                 .map(Employee::getlName)
                 .collect(Collectors.toList());
 
-        System.out.println("The list consisting of only lastnames is: \n" + ans_list + "\n");
+        System.out.println("[TASK A] - The list consisting of only lastnames is: \n" + ans_list + "\n");
 
 
         // Task b - Number of Gender.FEMALE
         var numFemales = employeeList.stream()
+                // TODO: Comment .filter, .count
                 .filter(gender -> gender.getGender() == FEMALE)
                 .count();
-                System.out.format("The number of FEMALE employees is %d \n\n", numFemales);
+                System.out.format("[TASK B] - The number of FEMALE employees is %d \n\n", numFemales);
 
 
         // Task c - Average salary of Gender.FEMALE
         var averageSalaryForFemale = employeeList.stream()
+                // TODO: Comment .mapToInt, .average
                 .filter(employee -> employee.getGender() == FEMALE)
                 .mapToInt(Employee::getSalary)
                 .average().getAsDouble();
-                System.out.format("The average salary for FEMALE employees is %.0f \n\n", averageSalaryForFemale);
+                System.out.format("[TASK C] -The average salary for FEMALE employees is %.0f \n\n", averageSalaryForFemale);
 
 
         // Task d - Give all "Bosses" a 7% raise. Print the list after
         employeeList.stream()
                 .filter(employee -> employee.getPosition().equalsIgnoreCase("Boss"))
                 .forEach(employee -> employee.setSalary( (int) (employee.getSalary() * 1.07)));
-                System.out.format("The list of employees after [Boss] has received a %d percent increase in salary:\n", PERCENTAGE_INCREASE);
-                System.out.println(employeeList);
+                System.out.format("[TASK D] - The list of employees after [Boss] has received a %d percent increase in salary:\n", PERCENTAGE_INCREASE);
+                System.out.println(employeeList + "\n");
 
 
         // Task e - Return boolean if anyone has a salary greater than 800_000
-
+        var greaterThanSalary = employeeList.stream()
+             // .map(salary -> employee.getSalary())
+                .map(Employee::getSalary)
+                .anyMatch(salary -> salary >= 800_000);
+                System.out.println("[TASK E] - The highest salary is " + greaterThanSalary + "\n\n");
 
 
         // Task f - Print the employee list with System.out.println() without using a loop
-
+        System.out.println("[TASK F] - \n" + employeeList);
+        // TODO: Probably wants a forEach expression
 
 
         // Task g - Find the employee(s) with the lowest salary
-
-
+//        var numLowSalary = employeeList.stream()
+//                .map(Employee::getSalary)
+//
+//
+//
+//        System.out.println(numLowSalary);
 
         // Task h - Find the sum of all whole numbers [1 < 1000] divisible by 3 || 5
 
