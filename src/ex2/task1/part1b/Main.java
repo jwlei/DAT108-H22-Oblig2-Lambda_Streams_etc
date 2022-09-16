@@ -17,6 +17,7 @@ public class Main {
 
 
         /**
+         * Misc, syntax etc.
          * We create a BiFunction which
          * BiFunction<T, U, R> nameOfFunction = ... {}
          * T = First argument
@@ -52,11 +53,11 @@ public class Main {
             return Math.abs(x - y);
         };
 
+
         /*
          * Use each BiFunction to calculate the result using their respective
          * integer values (i, ii, iii).
          */
-
         int ansI = calculate(sumX, sumY, getSum);
         int ansII = calculate(largestX, largestY, getLargest);
         int ansIII = calculate(distanceX, distanceY, getDistance);
@@ -66,8 +67,10 @@ public class Main {
         System.out.format("The absolute distance between %d and %d is [%d] \n", distanceX, distanceY, ansIII);
     }
 
-
     public static int calculate (int x, int y, BiFunction<Integer, Integer, Integer> bf) {
+        /**
+         * TODO: Comment
+         */
         return bf.apply(x, y);
     }
 }

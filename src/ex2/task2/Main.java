@@ -82,6 +82,9 @@ public class Main {
 
 
     private static void salaryAdjustment(List<Employee> employeeList, Function<Employee, Integer> function) {
+        /**
+         * TODO: Comment
+         */
         employeeList.forEach(employee -> employee.setSalary(function.apply(employee)));
     }
 
