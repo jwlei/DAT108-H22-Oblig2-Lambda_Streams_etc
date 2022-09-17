@@ -10,6 +10,7 @@ import java.util.OptionalDouble;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static ex2.task3.Gender.*;
 
@@ -84,7 +85,6 @@ public class Main {
 
         // Task f - Print the employee list with System.out.println() without using a loop
         System.out.println("[TASK F] - Printed using a pre-created toString() method in the Employee-class \n" + employeeList);
-
         System.out.println("[TASK F cont.] - Printed using a stream with a .forEach call \n");
         employeeList.stream()
                 .forEach(System.out::println);
@@ -105,39 +105,32 @@ public class Main {
 
 
         // Task h - Find the sum of all whole numbers [1 <= 1000] divisible by 3 || 5
-        int[] numList = IntStream.rangeClosed(1, 1000).toArray();
-        // TODO: Comment Intstream . justification for toArray()
-
-        int sum_3 = Arrays.stream(numList)
-                // TODO: Comment Arrays.stream(array[])
-                .filter(i -> i % 3 == 0)
-                .sum();
-
-        int sum_5 = Arrays.stream(numList)
-                .filter(i -> i % 5 == 0)
-                .sum();
-
-        int sum_3_5 = Arrays.stream(numList)
-                .filter(i -> i % 3 == 0)
-                .filter(i -> i % 5 == 0)
-                .sum();
-
-        var sumDivisible = (sum_3 + sum_5) - sum_3_5;
-        System.out.println("The sum of numbers between [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
-
-        System.out.println(check());;
-    }
-
-    private static int check() {
-        // TODO: REMOVE
-        int sum = 0;
-        for (int i = 1; i <= 1000; i++) {
-
-            if (i % 5 == 0 || i % 3 == 0 || (i % 5 == 0 || i % 3 == 0)) {
-                sum += i;
-            }
-        }
-        return sum;
+//        int[] numList = IntStream.rangeClosed(1, 1000).toArray();
+//        // TODO: Comment Intstream . justification for toArray()
+//
+//        int sum_3 = Arrays.stream(numList)
+//                // TODO: Comment Arrays.stream(array[])
+//                .filter(i -> i % 3 == 0)
+//                .sum();
+//
+//        int sum_5 = Arrays.stream(numList)
+//                .filter(i -> i % 5 == 0)
+//                .sum();
+//
+//        int sum_3_5 = Arrays.stream(numList)
+//                .filter(i -> i % 3 == 0)
+//                .filter(i -> i % 5 == 0)
+//                .sum();
+//
+//        var sumDivisible = (sum_3 + sum_5) - sum_3_5;
+//        System.out.println("The sum of numbers between [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
+//
+        var sumDivisible = Stream.iterate(1, n -> n + 1).limit(1000)
+                .toList()
+                .stream().filter(i -> i % 5 == 0 || i % 3 == 0)
+                .reduce(0, Integer::sum);
+              //.reduce(0, (sum, i) -> sum + i);
+                System.out.println("The sum of numbers between [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
     }
 
     private static void printAll(List<Employee> employeeList) {
