@@ -1,25 +1,15 @@
 package ex2.task3;
 
-import javax.sound.midi.Soundbank;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.OptionalDouble;
-
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static ex2.task3.Gender.*;
 
 public class Main {
-
-    private final static int INCREASED_SALARY = 50_000;
     private final static int PERCENTAGE_INCREASE = 7;
-    private final static int INCREASED_LOW_SALARY = 30_000;
-    private final static int PERCENTAGE_INCREASE_MALE = 15;
 
     public static void main(String[] args) {
 
@@ -41,10 +31,10 @@ public class Main {
 
         // Task a - List of lastNames
         var ans_list = employeeList.stream()
-             // .map(employee -> employee.getlName())
+                // .map(employee -> employee.getlName())
                 // TODO: Comment .map, .collect
                 .map(Employee::getlName)
-                .collect(Collectors.toList());
+                .toList();
                 System.out.println("[TASK A] - The list consisting of only lastnames is: \n" + ans_list + "\n");
 
 
