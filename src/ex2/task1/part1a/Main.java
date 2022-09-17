@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         /*
+         * The task:
          * Sort the list of Strings with in ascending order based on the Integer value
          * Utilize a lambda expression as a comparator in the Collections.sort() method.
          */

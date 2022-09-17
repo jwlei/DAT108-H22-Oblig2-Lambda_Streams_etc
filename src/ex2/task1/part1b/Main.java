@@ -5,6 +5,18 @@ import java.util.function.BiFunction;
 public class Main {
     public static void main(String[] args) {
 
+        /*
+         * The task:
+         * Create a method to perform whole numbers calculations
+         * -> public static int calculate(int x, int y, BiFunction<T, U, R>) {}
+         * Use the method to calculate the sum of 12, 13
+         *                   Find the greatest value of -5 and 3
+         *                   Find the absolute distance between 54 and 45
+         *
+         * The third parameter of the method should be input as a parameter
+         * e.g. int sum = calculate(12, 13, getSum);
+         */
+
 
         // part i
         int sumX = 12, sumY = 13;
@@ -16,7 +28,7 @@ public class Main {
         int distanceX = 54, distanceY = 45;
 
 
-        /**
+        /*
          * Misc, syntax etc.
          * We create a BiFunction which
          * BiFunction<T, U, R> nameOfFunction = ... {}
@@ -36,17 +48,19 @@ public class Main {
 
         // part ii
         BiFunction<Integer, Integer, Integer> getLargest = (x, y) -> {
-            /**
+            /*
              * (We Check) ? returnIfTrue : returnIfFalse
+             * x.compareTo(y) returns 1 if true, -1 if false
+             * so if x.compareTo(y) > 0 is true, return x, else y
              */
             return x.compareTo(y) > 0 ? x : y;
         };
 
         // part iii
         BiFunction<Integer, Integer, Integer> getDistance = (x, y) -> {
-            /**
+            /*
              * The absolute value of x. If x is negative (including -0), returns -x. Otherwise, returns x.
-             * e.g. -54 -(-54) = 4
+             * e.g. -54 - (-54) = 54
              * Since Math.abs(x - y) does not produce negative numbers, we get the
              * absolute distance between int X and Y by using Math.abs(x - y);
              */
