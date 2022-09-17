@@ -64,10 +64,10 @@ public class Employee {
         /**
          * toString method to print all employees
          */
-        return "Employee [Name = " + fName
+        return "\nEmployee [Name = " + fName
                 + ", Lastname = " + lName
                 + ", Gender = " + gender
                 + ", position = " + position
-                + ", salary = "+ salary + "]\n";
+                + ", salary = "+ salary + "]";
     }
 }

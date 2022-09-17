@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+import static ex2.task2.Gender.*;
+
 public class Main {
     private final static int INCREASED_SALARY = 50_000;
     private final static int PERCENTAGE_INCREASE = 7;
@@ -13,21 +15,30 @@ public class Main {
     public static void main(String[] args) {
 
         /*
-         * Create a list with dummy data to perform operations on
+         * The task:
+         * We have a list of employees which we want to create a method to perform a salary adjustment.
+         *
+         * The salary adjustment should be performed as a function parameter in a method salaryAdjustment
+         * so that the salaryAdjustment method is generic and does not depend on the type of calculation.
+         *
+         * Use lambda expressions for the different types of salary adjustments (described per Function<>)
          */
+
+
+        // Create a list with dummy data to perform operations on
         List<Employee> employeeList = Arrays.asList(
-                new Employee("Tom",     "Hansen",   Gender.MALE,    "Boss",         1_000_000),
-                new Employee("Kari",    "Nielsen",  Gender.THEY,    "Sales",        500_000),
-                new Employee("Ole",     "Karlsen",  Gender.MALE,    "Sales",        500_000),
-                new Employee("Per",     "Crowo",    Gender.MALE,    "FullStack",    700_000),
-                new Employee("Mona",    "Aarsen",   Gender.FEMALE,  "BackEnd",      500_000),
-                new Employee("Lise",    "Aanstad",  Gender.FEMALE,  "FrontEnd",     600_000),
-                new Employee("Jurgen",  "Hansen",   Gender.MALE,    "FrontEnd",     500_000)
+                new Employee("Tom",     "Hansen",   MALE,    "Boss",         1_000_000),
+                new Employee("Kari",    "Nielsen",  THEY,    "Sales",        500_000),
+                new Employee("Ole",     "Karlsen",  MALE,    "Sales",        500_000),
+                new Employee("Per",     "Crowo",    MALE,    "FullStack",    700_000),
+                new Employee("Mona",    "Aarsen",   FEMALE,  "BackEnd",      500_000),
+                new Employee("Lise",    "Aanstad",  FEMALE,  "FrontEnd",     600_000),
+                new Employee("Jurgen",  "Hansen",   MALE,    "FrontEnd",     500_000)
         );
 
 
         /*
-         * A Function<T, R>
+         * Function<T, R>
          * T - Input
          * R - Result
          *
@@ -36,23 +47,34 @@ public class Main {
 
         // Function to increase salary by INCREASED_SALARY;
         Function<Employee, Integer> increasedSalary =
+                // For each employee, getSalary, add INCREASED_SALARY
                 employee -> employee.getSalary() + INCREASED_SALARY;
 
         // Function to increase salary by PERCENTAGE_INCREASE;
         Function<Employee, Integer> increasedByPercentage =
-                employee -> employee.getSalary() + (employee.getSalary()*PERCENTAGE_INCREASE/100);
+                // For each employee, getSalary, add (salary*7%)
+                // employee -> employee.getSalary() + (employee.getSalary()*PERCENTAGE_INCREASE/100);
 
-        // Function to increase salaries < 600_000 by INCREASED_LOW_SALARY
+                // Alternatively using a helper method [int raiseByPercentage(int salary, int percent)] which returns Salary*percent
+                employee -> employee.getSalary() + raiseByPercentage(employee.getSalary(), PERCENTAGE_INCREASE);
+
+        // Function to increase salaries <= 600_000 by INCREASED_LOW_SALARY
         Function<Employee, Integer> increaseLowSalary =
-                employee -> employee.getSalary() < 600_000 ? (employee.getSalary() + INCREASED_LOW_SALARY) : employee.getSalary();
+                // For each employee, if salary is equal or lower than 600_000, get salary and add INCREASED_LOW_SALARY, else just get the salary
+                employee -> employee.getSalary() <= 600_000 ? (employee.getSalary() + INCREASED_LOW_SALARY) : employee.getSalary();
 
         // Function to increase salary by PERCENTAGE_INCREASE_MALE if the employee is MALE;
         Function<Employee, Integer> increaseForMale =
-                employee -> employee.getGender() == Gender.MALE ? (employee.getSalary() + employee.getSalary()*PERCENTAGE_INCREASE_MALE/100) : employee.getSalary();
+                // For each employee, if the gender is male, apply a % raise, else just get salary
+                // employee -> employee.getGender() == MALE ? (employee.getSalary() + employee.getSalary()*PERCENTAGE_INCREASE_MALE/100) : employee.getSalary();
+
+                // Alternatively using a helper method [int raiseByPercentage(int salary, int percent)] which returns Salary*percent
+                employee -> employee.getGender() == MALE ? employee.getSalary() + (raiseByPercentage(employee.getSalary(), PERCENTAGE_INCREASE_MALE)) : employee.getSalary();
 
 
 
         // Base list
+        System.out.println("[TASK 2] - The list of employees before any adjustments:");
         printAll(employeeList);
 
         // Increase all salaries by 50_000
@@ -83,7 +105,8 @@ public class Main {
 
     private static void salaryAdjustment(List<Employee> employeeList, Function<Employee, Integer> function) {
         /**
-         * TODO: Comment
+         * The method takes in a list, and performs the setSalary forEach applicable employee
+         * as described in the lambda expression of the function by calling function.apply(object).
          */
         employeeList.forEach(employee -> employee.setSalary(function.apply(employee)));
     }
@@ -92,7 +115,14 @@ public class Main {
         /*
          * A bit redundant, but it looks nice when calling the print all
          */
-        System.out.print(employeeList);
-        System.out.println();
+        System.out.print(employeeList + "\n");
+    }
+
+    private static int raiseByPercentage (int salary, int percent) {
+        /**
+         * Helper method to return the additional salary based on a percentage
+         * of the supplied salary
+         */
+        return (salary * percent) / 100;
     }
 }
