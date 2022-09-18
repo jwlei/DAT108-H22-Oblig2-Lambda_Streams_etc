@@ -26,88 +26,114 @@ public class Main {
         // Print initial list before any alterations
         System.out.println("[INITIAL LIST] - \n" + employeeList + "\n");
 
+        task_A(employeeList);
+        task_B(employeeList);
+        task_C(employeeList);
+        task_D(employeeList);
+        task_E(employeeList);
+        task_F(employeeList);
+        task_G(employeeList);
+        task_H(employeeList);
+    }
 
+
+    private static void task_A (List<Employee> employeeList){
         // Task a - List of lastNames
         var lnameList = employeeList.stream()
-                //
                 // .map(employee -> employee.getlName())
                 // Alternatively by performing a function call on each employee in the list
                 .map(Employee::getlName)
+                .sorted() // Optional
                 .toList();
 
-                System.out.println("[TASK A] - The list consisting of only lastnames is: \n" + lnameList + "\n");
+        System.out.println("[TASK A] - The list consisting of only lastnames is: \n" + lnameList + "\n");
+    }
 
 
+    private static void task_B (List<Employee> employeeList){
         // Task b - Number of Gender.FEMALE
         var numFemales = employeeList.stream()
                 .filter(gender -> gender.getGender() == FEMALE)
                 .count();
 
-                System.out.format("[TASK B] - The number of FEMALE employees is %d \n\n", numFemales);
+        System.out.format("[TASK B] - The number of FEMALE employees is %d \n\n", numFemales);
+    }
 
 
-        // Task c - Average salary of Gender.FEMALE
+    private static void task_C (List<Employee> employeeList){
         var averageSalaryForFemale = employeeList.stream()
                 .filter(employee -> employee.getGender() == FEMALE)
                 .mapToInt(Employee::getSalary)
-                .average()
-                .getAsDouble();
+                .average();
 
-                System.out.format("[TASK C] -The average salary for FEMALE employees is %.0f \n\n", averageSalaryForFemale);
+        if (averageSalaryForFemale.isPresent()) {
+            System.out.format("[TASK C] - The average salary for FEMALE employees is %.0f \n\n", averageSalaryForFemale.getAsDouble());
+        }
+    }
 
 
+    private static void task_D (List<Employee> employeeList){
         // Task d - Give all "Bosses" a 7% raise. Print the list after
         employeeList.stream()
                 .filter(employee -> employee.getPosition().equalsIgnoreCase("Boss"))
-              //.forEach(employee -> employee.setSalary((int) (employee.getSalary() * 1.07)));
-              // Alternatively using a helper method
+                //.forEach(employee -> employee.setSalary((int) (employee.getSalary() * 1.07)));
+                // Alternatively using a helper method
                 .forEach(employee -> employee.setSalary(employee.getSalary() + raiseByPercentage(employee.getSalary(), PERCENTAGE_INCREASE)));
 
-                System.out.format("[TASK D] - The list of employees after [Boss] has received a %d percent increase in salary:\n", PERCENTAGE_INCREASE);
-                System.out.println(employeeList + "\n");
+        System.out.format("[TASK D] - The list of employees after [Boss] has received a %d percent increase in salary:\n", PERCENTAGE_INCREASE);
+        System.out.println(employeeList + "\n");
+    }
 
 
+    private static void task_E (List<Employee> employeeList){
         // Task e - Return boolean if anyone has a salary greater than 800_000
         var greaterThanFlag = employeeList.stream()
-             // .map(salary -> employee.getSalary())
+                // .map(salary -> employee.getSalary())
                 .map(Employee::getSalary)
                 .anyMatch(salary -> salary > 800_000);
-             // Alternatively skip the mapping
-             // .anyMatch (salary -> employee.getSalary() > 800_000);
+        // Alternatively skip the mapping
+        // .anyMatch (salary -> employee.getSalary() > 800_000);
 
-                System.out.println("[TASK E] - It is [" + greaterThanFlag + "] that someone has a salary > 800.000\n");
+        System.out.println("[TASK E] - It is [" + greaterThanFlag + "] that someone has a salary > 800.000\n");
+    }
 
 
+    private static void task_F (List<Employee> employeeList){
         // Task f - Print the employee list with System.out.println() without using a loop
         System.out.println("[TASK F] - Printed using a pre-created toString() method in the Employee-class \n" + employeeList + "\n");
-        System.out.println("[TASK F cont.] - Printed using a stream with a .forEach call \n");
+        System.out.println("[TASK F cont.] - Printed using a stream with a .forEach call");
         employeeList.stream()
-                .forEach(System.out::println);
+                .forEach(System.out::print);
+        System.out.println();
+    }
 
 
+    private static void task_G (List<Employee> employeeList){
         // Task g - Find the employee(s) with the lowest salary
         var employeeLowSalary = employeeList.stream()
                 .min(Comparator.comparingInt(Employee::getSalary));
 
-                System.out.println("\n[TASK G] - The lowest salary of all employees is: \n"+ employeeLowSalary + "\n");
+        System.out.println("\n[TASK G] - The lowest salary of all employees is: \n"+ employeeLowSalary + "\n");
 
         var employeesWithLowestSalary = employeeList.stream()
                 .filter(e -> e.getSalary() == employeeLowSalary.get().getSalary())
                 .toList();
 
-                System.out.println("[TASK G cont.] - The employees sharing the lowest salary is: \n" + employeesWithLowestSalary + "\n");
+        System.out.println("[TASK G cont.] - The employees sharing the lowest salary is: \n" + employeesWithLowestSalary + "\n");
+    }
 
 
+    private static void task_H (List<Employee> employeeList){
         // Task h - Find the sum of all whole numbers [1 <= 1000] divisible by 3 || 5
         var sumDivisible = Stream.iterate(1, n -> n + 1).limit(1000)
                 .toList()
                 .stream()
                 .filter(i -> i % 5 == 0 || i % 3 == 0)
-              //.reduce(0, (sum, i) -> sum + i);
-              // Alternatively by using a function call to the sum function
+                //.reduce(0, (sum, i) -> sum + i);
+                // Alternatively by using a function call to the sum function
                 .reduce(0, Integer::sum);
 
-                System.out.println("The sum of numbers [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
+        System.out.println("The sum of numbers [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
     }
 
 
