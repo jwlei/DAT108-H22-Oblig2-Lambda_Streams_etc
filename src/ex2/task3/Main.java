@@ -12,9 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*
-         * Create a list with dummy data to perform operations on
-         */
+        // Create a list with dummy data to perform operations on
         List<Employee> employeeList = Arrays.asList(
                 new Employee("Tom",     "Hansen",   MALE,    "Boss",         1_000_000),
                 new Employee("Kari",    "Nielsen",  THEY,    "Sales",        500_000),
@@ -25,21 +23,21 @@ public class Main {
                 new Employee("Jurgen",  "Hansen",   MALE,    "FrontEnd",     500_000)
         );
 
+        // Print initial list before any alterations
         System.out.println("[INITIAL LIST] - \n" + employeeList + "\n");
 
 
         // Task a - List of lastNames
-        var ans_list = employeeList.stream()
+        var lnameList = employeeList.stream()
                 // .map(employee -> employee.getlName())
-                // TODO: Comment .map, .collect
+                // Alternatively by performing a function call on each employee in the list
                 .map(Employee::getlName)
                 .toList();
-                System.out.println("[TASK A] - The list consisting of only lastnames is: \n" + ans_list + "\n");
+                System.out.println("[TASK A] - The list consisting of only lastnames is: \n" + lnameList + "\n");
 
 
         // Task b - Number of Gender.FEMALE
         var numFemales = employeeList.stream()
-                // TODO: Comment .filter, .count
                 .filter(gender -> gender.getGender() == FEMALE)
                 .count();
                 System.out.format("[TASK B] - The number of FEMALE employees is %d \n\n", numFemales);
@@ -47,7 +45,6 @@ public class Main {
 
         // Task c - Average salary of Gender.FEMALE
         var averageSalaryForFemale = employeeList.stream()
-                // TODO: Comment .mapToInt, .average
                 .filter(employee -> employee.getGender() == FEMALE)
                 .mapToInt(Employee::getSalary)
                 .average().getAsDouble();
@@ -56,7 +53,6 @@ public class Main {
 
         // Task d - Give all "Bosses" a 7% raise. Print the list after
         employeeList.stream()
-                // TODO: Comment forEach
                 .filter(employee -> employee.getPosition().equalsIgnoreCase("Boss"))
                 .forEach(employee -> employee.setSalary( (int) (employee.getSalary() * 1.07)));
                 System.out.format("[TASK D] - The list of employees after [Boss] has received a %d percent increase in salary:\n", PERCENTAGE_INCREASE);
@@ -64,12 +60,11 @@ public class Main {
 
 
         // Task e - Return boolean if anyone has a salary greater than 800_000
-        var greaterThanSalary = employeeList.stream()
-                // TODO: Comment anyMatch
+        var greaterThanFlag = employeeList.stream()
              // .map(salary -> employee.getSalary())
                 .map(Employee::getSalary)
                 .anyMatch(salary -> salary > 800_000);
-                System.out.println("[TASK E] - It is [" + greaterThanSalary + "] that someone has a salary > 800.000\n");
+                System.out.println("[TASK E] - It is [" + greaterThanFlag + "] that someone has a salary > 800.000\n");
 
 
         // Task f - Print the employee list with System.out.println() without using a loop
@@ -82,43 +77,24 @@ public class Main {
 
         // Task g - Find the employee(s) with the lowest salary
         var employeeLowSalary = employeeList.stream()
-                // TODO: Comment comparator
                 .min(Comparator.comparingInt(Employee::getSalary));
                 System.out.println("[TASK G] - The lowest salary of all employees is: \n"+ employeeLowSalary + "\n");
 
         var employeesWithLowestSalary = employeeList.stream()
-                // TODO: Comment .get(), toList()
                 .filter(e -> e.getSalary() == employeeLowSalary.get().getSalary())
                 .toList();
                 System.out.println("[TASK G cont.] - The employees sharing the lowest salary is: \n" + employeesWithLowestSalary + "\n");
 
 
         // Task h - Find the sum of all whole numbers [1 <= 1000] divisible by 3 || 5
-//        int[] numList = IntStream.rangeClosed(1, 1000).toArray();
-//        // TODO: Comment Intstream . justification for toArray()
-//
-//        int sum_3 = Arrays.stream(numList)
-//                // TODO: Comment Arrays.stream(array[])
-//                .filter(i -> i % 3 == 0)
-//                .sum();
-//
-//        int sum_5 = Arrays.stream(numList)
-//                .filter(i -> i % 5 == 0)
-//                .sum();
-//
-//        int sum_3_5 = Arrays.stream(numList)
-//                .filter(i -> i % 3 == 0)
-//                .filter(i -> i % 5 == 0)
-//                .sum();
-//
-//        var sumDivisible = (sum_3 + sum_5) - sum_3_5;
-//        System.out.println("The sum of numbers between [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
-//
         var sumDivisible = Stream.iterate(1, n -> n + 1).limit(1000)
                 .toList()
-                .stream().filter(i -> i % 5 == 0 || i % 3 == 0)
-                .reduce(0, Integer::sum);
+                .stream()
+                .filter(i -> i % 5 == 0 || i % 3 == 0)
               //.reduce(0, (sum, i) -> sum + i);
+              // Alternatively by using a function call to the sum function
+                .reduce(0, Integer::sum);
+
                 System.out.println("The sum of numbers between [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
     }
 
@@ -129,4 +105,34 @@ public class Main {
         System.out.print(employeeList);
         System.out.println();
     }
+
+    /*
+     * MISC Documentation commentary
+     *
+     * .map()
+     *
+     * .mapToInt()
+     *
+     * .toList()
+     *
+     * .collect(Collections.toList())
+     *
+     * .filter()
+     *
+     * .reduce()
+     *
+     * .count()
+     *
+     * .average()
+     *
+     * .getAsDouble()
+     *
+     * .forEach()
+     *
+     * .anyMatch()
+     *
+     * Comparator
+     *
+     * .get()
+     */
 }
