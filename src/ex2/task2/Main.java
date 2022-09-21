@@ -22,6 +22,7 @@ public class Main {
                  new Ansatt("Marit", "Knutsen", Kjonn.DAME, "Daglig leder", 600_000),
                  new Ansatt("Kurt", "Geilo",Kjonn.MANN, "Assisterende leder", 550_000)
                  );
+    	 
     	 //1) Fast kronetillegg
     	 Function<Ansatt, Integer> fastKroneTillegg
          		= ansatt -> ansatt.getAarslonn()+ FAST_KRONE_TILLEGG;
