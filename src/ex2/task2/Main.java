@@ -6,7 +6,7 @@ import java.util.function.Function;
 
 public class Main {
 	
-	private static final int FAST_KRONE_TILLEGG = 10000;
+    private static final int FAST_KRONE_TILLEGG = 10000;
     private static final int PROSENT_TILLEGG = 7;
     private static final int FAST_KRONE_TILLEGG_LAV_LONN = 25000;
     private static final int LAV_LONN = 400000;
