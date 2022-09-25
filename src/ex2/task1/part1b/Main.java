@@ -30,11 +30,24 @@ public class Main {
 
         /*
          * Misc, syntax etc.
-         * We create a BiFunction which
-         * BiFunction<T, U, R> nameOfFunction = ... {}
-         * T = First argument
-         * U = Second argument
-         * R = returnable result
+         *
+         * Predicate<T> - boolean test(T t)
+         * -> Takes an argument T and returns a boolean
+         *
+         * Consumer<T> - void accept(T t)
+         * -> Takes an argument T and returns nothing
+         *
+         * Supplier<T> - T get()
+         * -> Takes no arguments and returns a value of type T
+         *
+         * Function<T, R> - R apply(T t)
+         * -> Takes an argument T and returns a value of type R
+         *
+         * IntFunction<R> - R apply(int value)
+         * -> Takes an argument int and returns a value of type R
+         *
+         * BiFunction<T, U, R> - R apply(T t, U u)
+         * -> Takes two arguments T and U and returns a value of type R
          */
 
         // part i
@@ -83,7 +96,7 @@ public class Main {
 
     public static int calculate (int x, int y, BiFunction<Integer, Integer, Integer> bf) {
         /**
-         * TODO: Comment
+         * We use a specific BiFunction to calculate the result of integers X and Y.
          */
         return bf.apply(x, y);
     }

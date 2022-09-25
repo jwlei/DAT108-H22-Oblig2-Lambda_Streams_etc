@@ -2,7 +2,6 @@ package ex2.task1.part1a;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -56,15 +55,5 @@ public class Main {
          * Collections.sort(list<>, String::compareTo);
          *
          */
-
-
-
-
-
-
-
-
-
-
     }
 }
