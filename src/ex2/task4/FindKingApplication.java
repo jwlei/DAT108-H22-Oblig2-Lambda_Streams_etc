@@ -8,6 +8,7 @@ public class FindKingApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FindKingApplication.class, args);
+		// URL: http://localhost:8080/kingsearch.html
 	}
 
 }
