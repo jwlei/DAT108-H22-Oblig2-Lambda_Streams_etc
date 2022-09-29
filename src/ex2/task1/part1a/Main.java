@@ -7,14 +7,12 @@ public class Main {
 
         List<String> listen = Arrays.asList("10", "1", "20", "110", "21", "12");
 
+        System.out.println("Før sortering: " + listen);
 
 
+        Collections.sort(listen, (a, b) -> (Integer.valueOf(a)).compareTo(Integer.valueOf(b)));
 
-        System.out.println(listen);
-
-        Collections.sort(listen, (a, b) -> (a).compareTo(b));
-
-        System.out.println(listen);
+        System.out.println("Etter sortering: " + listen);
 
 
     }

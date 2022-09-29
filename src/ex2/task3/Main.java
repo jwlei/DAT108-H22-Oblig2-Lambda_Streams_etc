@@ -5,8 +5,11 @@ import ex2.task2.Kjonn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
@@ -36,7 +39,6 @@ public class Main {
         // b)
         var antallKvinner = ansatte.stream().filter(a -> a.getKjonn().equals(Kjonn.DAME)).count();
 
-
         System.out.println(antallKvinner);
 
         // c)
@@ -58,25 +60,43 @@ public class Main {
 
         // g)
 
-        // todo find a way to return multiple lowest salaries
-        var lavestLonn = ansatte.stream().min((a, b) -> Integer.compare(a.getAarslonn(), b.getAarslonn())).get();
+        var lavestLonn = ansatte.stream().min((a, b) -> Integer.compare(a.getAarslonn(), b.getAarslonn()));
+        var deMedLavest = ansatte.stream().filter(a -> a.getAarslonn() == lavestLonn.get().getAarslonn()).toList();
+
+        // eventuelt som on-liner
+//        var deMedLavest = ansatte.stream().filter(a -> a.getAarslonn() == ansatte.stream().min((x, y) -> Integer.compare(x.getAarslonn(), y.getAarslonn())).get().getAarslonn()).toList();
+
 
         System.out.println(lavestLonn);
+        System.out.println(deMedLavest);
 
         // h)
 
         // Creates a list from 1 -> 1000 and sum all numbers which can be divided with 3 and 5
-        var tall = Stream.iterate(1, n -> n + 1).limit(1000).
+        // se over denne
+//        var tall = Stream.iterate(1, n -> n + 1).limit(1000).
+//                toList().stream().
+//                filter(x -> x % 3 == 0).
+//                filter(x -> x % 5 == 0).
+//                reduce(0, (sum, x) -> sum + x);
+
+
+        var tall2 = Stream.iterate(1, n -> n + 1).limit(1000).
                 toList().stream().
-                filter(x -> x % 3 == 0).
-                filter(x -> x % 5 == 0).
-                reduce(0, (sum, x) -> sum + x);
+                filter(x -> (x % 3 == 0 ||  x % 5 == 0)).reduce(0, (sum, x) -> sum + x);
 
-        System.out.println(tall);
+        System.out.println(tall2);
 
 
 
 
+
+        // h2) mmå se på denne
+        var deleligSum = IntStream.range(0, 1000)
+                .filter(value -> (value % 3 == 0 || value % 5 == 0))
+                .sum();
+
+        System.out.println(deleligSum);
 
 
     }
