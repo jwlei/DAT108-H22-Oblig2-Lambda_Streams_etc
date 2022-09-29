@@ -8,11 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 @Controller
 public class SearchController {
 
@@ -22,20 +17,17 @@ public class SearchController {
 	}
 
 
-	@RequestMapping(value = "/search", method = GET)
+	@GetMapping(value = "/search")
 	public String foundKing(@RequestParam("year") String yearString, Model model) {
 		new ListOfKings();
 		int year = Integer.parseInt(yearString);
-		var resultingKing = ListOfKings.getListOfKings().stream()
+		var foundKing = ListOfKings.getListOfKings().stream()
 				.filter(king -> king.getReignStart() <= year && king.getReignEnd() >= year)
-				.collect(Collectors.toList()).get(0);
+				.findFirst()
+				.orElse(King.DEFAULT);
 
-
-
-//		model.addAttribute("king", Objects.requireNonNullElse(resultingKing, King.DEFAULT));
-		System.out.println(resultingKing.toString());
-		model.addAttribute("king", resultingKing.toString());
-		model.addAttribute("img", resultingKing.getImg());
+		model.addAttribute("king", foundKing);
+		model.addAttribute("year", year);
 
 		return "searchResult";
 	}
