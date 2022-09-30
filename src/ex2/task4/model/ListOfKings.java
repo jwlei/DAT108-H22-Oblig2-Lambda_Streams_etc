@@ -1,4 +1,4 @@
-package ex2.task4.object;
+package ex2.task4.model;
 
 import java.util.ArrayList;
 import java.util.List;

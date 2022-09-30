@@ -12,11 +12,13 @@
                 <h3> Find the king of Norway for your specified time (1426-1648)</h3>
                     <div>
                         <form action="/search" modelAttribute="year">
-                            <div >
-                                <div class = "input">
+                            <div>
+                                <div class="input">
+                                    <!-- Create a form which sends the form towards "year" we also "validate" the input to give an indication if
+                                    the year input is valid in regard to the small sample set created in ListOfKings -->
                                     <input id="search_input" type="text"  name="year" style="text-align:center;" oninput="validateYear()" autocomplete="off">
                                 </div>
-                                <div class = "search-button">
+                                <div class="search-button">
                                     <input type="submit" value="Search" class="search-button">
                                 </div>
                             </div>

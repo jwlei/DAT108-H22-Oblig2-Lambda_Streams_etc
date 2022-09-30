@@ -1,7 +1,8 @@
-package ex2.task4.object;
+package ex2.task4.model;
 
 public class King {
-	
+
+	// Default king
 	public static final King DEFAULT = new King("[Missing data]", 0, 0, 0);
 	
 	private static final String STD_IMG = "https://upload.wikimedia.org"
@@ -13,11 +14,12 @@ public class King {
 
 	
 	public King(String name, int bYear, int reignStart, int reignEnd) {
+		// Initialize the king
 		this(name, bYear, reignStart, reignEnd, STD_IMG);
 	}
 
-	public King(String name, int bYear, int reignStart, int reignEnd,
-				String img) {
+	public King(String name, int bYear, int reignStart, int reignEnd, String img) {
+		// Constructor
 		this.name = name;
 		this.bYear = bYear;
 		this.reignStart = reignStart;

@@ -12,6 +12,9 @@ public class ErrorHandlerController implements ErrorController{
     @RequestMapping("/error")
     @ResponseBody
     public RedirectView getErrorPath() {
+        /*
+         * Create an error page with a redirect to the index page
+         */
         return new RedirectView("error.html");
     }
 }
