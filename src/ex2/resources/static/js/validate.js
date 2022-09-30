@@ -14,7 +14,7 @@ function validateYear() {
     // of the input field
     if (yearInput.value === "") {
         document.getElementById("search_input").style.borderColor = "null";
-    } else if (validYear.test(yearInput.value) && (yearInput.value >= 1426 && yearInput.value <= 1648)) {
+    } else if (validYear.test(yearInput.value)) {
         document.getElementById("search_input").style.borderColor = "green";
     } else {
         document.getElementById("search_input").style.borderColor = "red";
