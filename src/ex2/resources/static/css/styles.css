@@ -12,11 +12,20 @@
 
 .input, .search-button {
     text-align: center;
-    display: block;
+    display: flex;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0.3em;
     width: 15em;
+}
+
+.input_box {
+    display: flex;
+    flex-direction: row;
+}
+
+.hint {
+    visibility: hidden;
 }
 
 textarea:focus, input:focus{
