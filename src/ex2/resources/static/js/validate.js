@@ -14,9 +14,18 @@ function validateYear() {
     // of the input field
     if (yearInput.value === "") {
         document.getElementById("search_input").style.borderColor = "null";
-    } else if (validYear.test(yearInput.value)) {
+        document.getElementById("hint").style.visibility = "hidden";
+    } else if (validYear.test(yearInput.value) && (yearInput.value >= 1426 && yearInput.value <= 1648)) {
         document.getElementById("search_input").style.borderColor = "green";
+        document.getElementById("hint").style.visibility = "visible";
+        document.getElementById("hintText").innerHTML = "Valid year";
+    } else if (validYear.test(yearInput.value) && !(yearInput.value >= 1426 && yearInput.value <= 1648)){
+        document.getElementById("search_input").style.borderColor = "red";
+        document.getElementById("hint").style.visibility = "visible";
+        document.getElementById("hintText").innerHTML = "Year must be between 1426 and 1648";
     } else {
         document.getElementById("search_input").style.borderColor = "red";
+        document.getElementById("hint").style.visibility = "visible";
+        document.getElementById("hintText").innerHTML = "Invalid year";
     }
 }
