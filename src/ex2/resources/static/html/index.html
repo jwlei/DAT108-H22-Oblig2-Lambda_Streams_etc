@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+        <title>The quest to find the reigning king!</title>
+    </head>
+
+    <body>
+        <div class="center">
+            <h1> Search for a King </h1>
+                <h3> Find the king of Norway for your specified time (1426-1648)</h3>
+                    <div>
+                        <form action="/search" modelAttribute="year">
+                            <div>
+                                <div class="input">
+                                    <!-- Create a form which sends the form towards "year" we also "validate" the input to give an indication if
+                                    the year input is valid in regard to the small sample set created in ListOfKings -->
+                                    <input id="search_input" type="text"  name="year" style="text-align:center;" oninput="validateYear()" autocomplete="off">
+                                </div>
+                                <div class="search-button">
+                                    <input type="submit" value="Search" class="search-button">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Greater_royal_coat_of_arms_of_Norway.svg/1024px-Greater_royal_coat_of_arms_of_Norway.svg.png" alt="Norwegian flag" width="250" height="250">
+        </div>
+        <script type="text/javascript" src="validate.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+/* General styling for the HTML and JSP files */
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 10vh;
+    padding-top: 10%;
+}
+
+.input, .search-button {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.3em;
+    width: 15em;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+

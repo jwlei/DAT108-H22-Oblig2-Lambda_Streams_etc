@@ -3,6 +3,7 @@ package ex2.task3;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static ex2.task3.Gender.*;
@@ -33,7 +34,7 @@ public class Main {
         task_E(employeeList);
         task_F(employeeList);
         task_G(employeeList);
-        task_H(employeeList);
+        task_H();
     }
 
 
@@ -123,19 +124,24 @@ public class Main {
     }
 
 
-    private static void task_H (List<Employee> employeeList){
-        // Task h - Find the sum of all whole numbers [1 <= 1000] divisible by 3 || 5
-        var sumDivisible = Stream.iterate(1, n -> n + 1).limit(1000)
-                .toList()
-                .stream()
+    private static void task_H (){
+        // Task h - Find the sum of all whole numbers [1 < 1000] divisible by 3 || 5
+        //        var sumDivisible = Stream.iterate(1, n -> n + 1).limit(999)
+        //                .toList()
+        //                .stream()
+        //                .filter(i -> i % 5 == 0 || i % 3 == 0)
+        //                //.reduce(0, (sum, i) -> sum + i);
+        //                // Alternatively by using a method call to the sum function
+        //                .reduce(0, Integer::sum);
+
+        // Alternatively
+        var sumDivisible = IntStream.rangeClosed(1, 999)
+                             // IntStream.range(1, 1000)
                 .filter(i -> i % 5 == 0 || i % 3 == 0)
-                //.reduce(0, (sum, i) -> sum + i);
-                // Alternatively by using a function call to the sum function
-                .reduce(0, Integer::sum);
+                .sum();
 
-        System.out.println("The sum of numbers [1, ... 1000] divisible by 3 or 5 is: " + sumDivisible);
+        System.out.println("The sum of numbers [1, ..., < 1000] divisible by 3 or 5 is: " + sumDivisible);
     }
-
 
     private static void printAll(List<Employee> employeeList) {
         /*

@@ -58,6 +58,7 @@ public class Main {
                 // Alternatively using a helper method [int raiseByPercentage(int salary, int percent)] which returns Salary*percent
                 employee -> employee.getSalary() + raiseByPercentage(employee.getSalary(), PERCENTAGE_INCREASE);
 
+
         // Function to increase salaries <= 600_000 by INCREASED_LOW_SALARY
         Function<Employee, Integer> increaseLowSalary =
                 // For each employee, if salary is equal or lower than 600_000, get salary and add INCREASED_LOW_SALARY, else just get the salary
