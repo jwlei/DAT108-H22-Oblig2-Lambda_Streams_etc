@@ -9,6 +9,6 @@ public class FindKingApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FindKingApplication.class, args);
-		// URL: http://localhost:8080/index.html
+		// URL: http://localhost:8080/
 	}
 }
